@@ -7,9 +7,10 @@ create table zip_code
     zip_code varchar(255),
     city     varchar(255),
     country  varchar(255)
-)
+);
 
 CREATE sequence address_seq start with 1 increment by 1;
+
 Create table adress
 (
     id     int primary key default nextval('address_seq'),
