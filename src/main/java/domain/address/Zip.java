@@ -1,4 +1,4 @@
-package com.switchfully.parkshark_2024_10.adress;
+package domain.address;
 
 import jakarta.persistence.*;
 
