@@ -1,4 +1,4 @@
-package domain;
+package com.switchfully.parkshark_2024_10.division;
 
 
 import jakarta.persistence.Entity;
