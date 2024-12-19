@@ -1,6 +1,6 @@
-package domain.contactInformation;
+package com.switchfully.parkshark_2024_10.contactInformation;
 
-import domain.address.Address;
+import com.switchfully.parkshark_2024_10.address.Address;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
