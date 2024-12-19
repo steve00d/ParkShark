@@ -1,4 +1,4 @@
-package com.switchfully.parkshark_2024_10.adress;
+package domain.adress;
 
 import jakarta.persistence.*;
 
@@ -16,7 +16,7 @@ public class Adress {
     @Column(name = "extra")
     private  String extra;
     @OneToOne
-    @JoinColumn(name = "zip_code")
+    @JoinColumn(name = "code")
     private  Zip zipCode;
 
     public Adress(String street, int number, String extra, Zip zipCode) {
