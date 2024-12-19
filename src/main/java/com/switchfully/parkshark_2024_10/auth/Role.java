@@ -6,6 +6,7 @@ import java.util.List;
 public enum Role {
 
     MANAGER(
+            Permission.CAN_CREATE_DIVISIONS,
             Permission.CAN_VIEW_DIVISIONS,
             Permission.CAN_VIEW_PARKING_LOTS
     ),
