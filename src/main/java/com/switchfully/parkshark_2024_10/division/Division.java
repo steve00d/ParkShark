@@ -1,6 +1,7 @@
 package com.switchfully.parkshark_2024_10.division;
 
 
+import com.switchfully.parkshark_2024_10.user.Director;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,7 +16,7 @@ public class Division {
 
     @OneToOne
     @JoinColumn(name = "id")
-    private  Director director;
+    private Director director;
 
     @Column(name = "original_company_name")
     private String originalCompanyName;

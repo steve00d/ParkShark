@@ -9,11 +9,9 @@ import jakarta.persistence.*;
 public class Director extends Person {
 
 
-
-
-       @OneToOne
-       @JoinColumn(name="FK_DIVISION_ID")
-       private Division division;
+    @OneToOne
+    @JoinColumn(name = "FK_DIVISION_ID")
+    private Division division;
 
 
     public Director(Division division) {
