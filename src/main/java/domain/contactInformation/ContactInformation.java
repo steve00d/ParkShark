@@ -32,7 +32,7 @@ public class ContactInformation {
     private String emailAddress;
 
     @OneToOne
-    @JoinColumn (name = "id")
+    @JoinColumn (name = "fk_address_id")
     private Address address;
 
     public ContactInformation(String firstName, String lastName, String primaryPhoneNumber, @Nullable String secondaryPhoneNumber, String emailAddress, Address address) {
