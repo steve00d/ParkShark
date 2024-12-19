@@ -18,12 +18,12 @@ public class Division {
     private  Director director;
 
     @Column(name = "original_company_name")
-    private String OriginalCompanyName;
+    private String originalCompanyName;
 
     public Division(String name, Director director, String originalCompanyName) {
         this.name = name;
         this.director = director;
-        OriginalCompanyName = originalCompanyName;
+        this.originalCompanyName = originalCompanyName;
     }
 
     public Division() {
@@ -39,7 +39,7 @@ public class Division {
     }
 
     public String getOriginalCompanyName() {
-        return OriginalCompanyName;
+        return originalCompanyName;
     }
 
     public void setId(Long id) {
