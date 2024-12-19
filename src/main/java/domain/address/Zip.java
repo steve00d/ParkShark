@@ -1,4 +1,4 @@
-package domain.adress;
+package domain.address;
 
 import jakarta.persistence.*;
 

@@ -1,6 +1,6 @@
 package domain.contactInformation;
 
-import domain.adress.Adress;
+import domain.address.Address;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -33,10 +33,9 @@ public class ContactInformation {
 
     @OneToOne
     @JoinColumn (name = "id")
-    private Adress address;
+    private Address address;
 
-    public ContactInformation(Long id, String firstName, String lastName, String primaryPhoneNumber, @Nullable String secondaryPhoneNumber, String emailAddress, Adress address) {
-        this.id = id;
+    public ContactInformation(String firstName, String lastName, String primaryPhoneNumber, @Nullable String secondaryPhoneNumber, String emailAddress, Address address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.primaryPhoneNumber = primaryPhoneNumber;
@@ -73,7 +72,7 @@ public class ContactInformation {
         return emailAddress;
     }
 
-    public Adress getAddress() {
+    public Address getAddress() {
         return address;
     }
 }

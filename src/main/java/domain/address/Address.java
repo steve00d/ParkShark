@@ -1,10 +1,10 @@
-package domain.adress;
+package domain.address;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "adress")
-public class Adress {
+@Table(name = "address")
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq")
     @SequenceGenerator(name = "address_seq", sequenceName = "address_seq", allocationSize = 1)
@@ -19,14 +19,14 @@ public class Adress {
     @JoinColumn(name = "code")
     private  Zip zipCode;
 
-    public Adress(String street, int number, String extra, Zip zipCode) {
+    public Address(String street, int number, String extra, Zip zipCode) {
         this.street = street;
         this.number = number;
         this.extra = extra;
         this.zipCode = zipCode;
     }
 
-    public Adress() {
+    public Address() {
         // DESERIALIZATION
     }
 
