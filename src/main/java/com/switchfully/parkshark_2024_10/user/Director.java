@@ -7,15 +7,9 @@ import jakarta.persistence.*;
 @Entity
 @DiscriminatorValue("1")
 public class Director extends Person {
-
-
-
-
-//    @OneToOne(cascade = CascadeType.PERSIST)
-//    @JoinColumn(name="FK_DIVISION_ID")
-    @Transient
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="fk_division_id")
     private Division division;
-
 
     public Director(Division division) {
 
@@ -37,12 +31,8 @@ public class Director extends Person {
         return null;
     }
 
-
-
-
     public Division getDivision() {
         return division;
     }
-
 
 }
