@@ -1,6 +1,7 @@
 package com.switchfully.parkshark_2024_10.division;
 
 import com.switchfully.parkshark_2024_10.division.dto.CreateDivisionDto;
+import com.switchfully.parkshark_2024_10.division.dto.DivisionDto;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,10 @@ public class DivisionService {
         this.divisionRepository = divisionRepository;
     }
 
-    public void addDivision(CreateDivisionDto createDivisionDto){
+    public DivisionDto addDivision(CreateDivisionDto createDivisionDto){
         Division division = divisionMapper.mapToDivision(createDivisionDto);
         divisionRepository.save(division);
+        return divisionMapper.mapToDivisionDto(division);
     }
 
 }

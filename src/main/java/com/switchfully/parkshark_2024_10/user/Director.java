@@ -12,12 +12,15 @@ public class Director extends Person {
     private Division division;
 
     public Director(Division division) {
+        this.division = division;
+    }
 
+    public Director(String firstName, String lastName, String email, String password, Division division) {
+        super(firstName, lastName, email, password);
         this.division = division;
     }
 
     public Director() {
-
     }
 
     public Director(Division division, String firstName, String lastName, String email, String password) {
