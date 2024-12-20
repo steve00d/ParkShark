@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class DivisionService {
     DivisionRepository divisionRepository;
-    DivisionMapper divisionMapper = new DivisionMapper();
+
 
     public DivisionService(DivisionRepository divisionRepository) {
         this.divisionRepository = divisionRepository;
     }
 
     public DivisionDto addDivision(CreateDivisionDto createDivisionDto){
-        Division division = divisionMapper.mapToDivision(createDivisionDto);
+        Division division = DivisionMapper.mapToDivision(createDivisionDto);
         divisionRepository.save(division);
-        return divisionMapper.mapToDivisionDto(division);
+        return DivisionMapper.mapToDivisionDto(division);
     }
 
 }

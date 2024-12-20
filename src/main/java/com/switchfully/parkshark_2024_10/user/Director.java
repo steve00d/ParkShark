@@ -7,8 +7,8 @@ import jakarta.persistence.*;
 @Entity
 @DiscriminatorValue("1")
 public class Director extends Person {
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="fk_division_id")
+
+    @OneToOne(mappedBy = "director")
     private Division division;
 
     public Director(Division division) {
