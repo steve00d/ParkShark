@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Base64;
+
 @DataJpaTest
 public class CreateUserTest {
 
@@ -15,8 +17,15 @@ public class CreateUserTest {
     @Test
     void saveDirector_shouldPersistAndRetrieveDirectorCorrectly() {
 
+        String encodedPassword = Base64.getEncoder().encodeToString("pwd".getBytes());
+
+
         Division division = new Division();
-        Director director = new Director(division, "Bert", "Poelmans", "br@be.com", "pwd");
+        division.setId(1L);
+        Director director = new Director(division, "Bert", "Poelmans", "br@be.com", encodedPassword);
+
+
+
 
         // when
         userRepository.save(director);
@@ -30,5 +39,7 @@ public class CreateUserTest {
         Assertions.assertEquals("Bert", found.getFirst_name(), "First names should match");
         Assertions.assertEquals("Poelmans", found.getLast_name(), "Last names should match");
         Assertions.assertEquals("br@be.com", found.getEmail(), "Emails should match");
+
+        Assertions.assertEquals(encodedPassword, found.getPassword(), "Password should be stored encoded");
     }
 }

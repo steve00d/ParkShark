@@ -67,4 +67,6 @@ public abstract class Person {
     public boolean hasPermission(Permission permission) {
         return getRole().hasPermission(permission);
     }
+
+
 }
