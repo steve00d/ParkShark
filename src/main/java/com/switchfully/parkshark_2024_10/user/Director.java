@@ -11,8 +11,9 @@ public class Director extends Person {
 
 
 
-       @OneToOne
-       @JoinColumn(name="FK_DIVISION_ID")
+//       @OneToOne
+//       @JoinColumn(name="FK_DIVISION_ID")
+    @Transient
        private Division division;
 
 

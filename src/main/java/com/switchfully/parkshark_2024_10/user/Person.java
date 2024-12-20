@@ -6,7 +6,7 @@ import com.switchfully.parkshark_2024_10.auth.Role;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="user")
+@Table(name = "\"user\"")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="person_type",
 discriminatorType = DiscriminatorType.INTEGER)
