@@ -28,6 +28,13 @@ public abstract class Person {
     @Column(name="password")
     private String password;
 
+    public Person(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
     public Person() {
     }
 
