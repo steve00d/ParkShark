@@ -6,14 +6,14 @@ import com.switchfully.parkshark_2024_10.auth.Role;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="user")
+@Table(name = "\"user\"")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="person_type",
 discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSON_SEQ")
-    @SequenceGenerator(sequenceName = "person_seq", allocationSize = 1, name = "PERSON_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(sequenceName = "user_seq", allocationSize = 1, name = "user_seq")
     private Long id;
 
     @Column(name="FIRST_NAME")
@@ -31,11 +31,18 @@ public abstract class Person {
     public Person() {
     }
 
-    public String getFirst_name() {
+    public Person(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public String getFirstName() {
         return firstName;
     }
 
-    public String getLast_name() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -60,4 +67,6 @@ public abstract class Person {
     public boolean hasPermission(Permission permission) {
         return getRole().hasPermission(permission);
     }
+
+
 }
