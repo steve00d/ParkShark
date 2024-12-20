@@ -5,12 +5,12 @@ import jakarta.validation.constraints.NotNull;
 
 public class CreateDivisionDto {
     String name;
-    Director director;
+    CreateDirectorDto createDirectorDto;
     String originalCompanyName;
 
-    public CreateDivisionDto(@NotNull String name,@NotNull Director director, String originalCompanyName) {
+    public CreateDivisionDto(@NotNull String name,@NotNull CreateDirectorDto createDirectorDto, String originalCompanyName) {
         this.name = name;
-        this.director = director;
+        this.createDirectorDto = createDirectorDto;
         this.originalCompanyName = originalCompanyName;
     }
 
@@ -18,8 +18,8 @@ public class CreateDivisionDto {
         return name;
     }
 
-    public Director getDirector() {
-        return director;
+    public CreateDirectorDto getCreateDirectorDto() {
+        return createDirectorDto;
     }
 
     public String getOriginalCompanyName() {

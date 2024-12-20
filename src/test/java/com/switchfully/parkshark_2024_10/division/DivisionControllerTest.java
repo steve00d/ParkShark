@@ -1,10 +1,10 @@
 package com.switchfully.parkshark_2024_10.division;
 
+
+import com.switchfully.parkshark_2024_10.division.dto.CreateDirectorDto;
 import com.switchfully.parkshark_2024_10.division.dto.CreateDivisionDto;
 import com.switchfully.parkshark_2024_10.division.dto.DivisionDto;
-import com.switchfully.parkshark_2024_10.user.Director;
 import com.switchfully.parkshark_2024_10.user.Manager;
-import com.switchfully.parkshark_2024_10.user.Person;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -31,8 +31,8 @@ class DivisionControllerTest {
     @DisplayName("Division can be created as manager")
     void addDivisionAsManager() {
         Manager manager = new Manager("manaa", "geeer", "manager@gmail.com", "1234");
-        Director director = new Director("steve", "daenen",
-                "steve@gmail.com", "1234", null);
+        CreateDirectorDto director = new CreateDirectorDto("steve", "daenen",
+                "steve@gmail.com", "1234");
         CreateDivisionDto createDivisionDto = new CreateDivisionDto(
                 "Division 1", director, "old company");
 
@@ -53,9 +53,9 @@ class DivisionControllerTest {
 
         assertNotNull(response);
         assertEquals(createDivisionDto.getName(), response.getName());
-        assertEquals(createDivisionDto.getDirector().getEmail(), response.getDirector().getEmail());
-        assertEquals(createDivisionDto.getDirector().getFirst_name(), response.getDirector().getFirst_name());
-        assertEquals(createDivisionDto.getDirector().getLast_name(), response.getDirector().getLast_name());
+        assertEquals(createDivisionDto.getCreateDirectorDto().getEmail(), response.getDirectorDto().getEmail());
+        assertEquals(createDivisionDto.getCreateDirectorDto().getFirstName(), response.getDirectorDto().getFirstName());
+        assertEquals(createDivisionDto.getCreateDirectorDto().getLastName(), response.getDirectorDto().getLastName());
         assertEquals(createDivisionDto.getOriginalCompanyName(), response.getOriginalCompanyName());
     }
 

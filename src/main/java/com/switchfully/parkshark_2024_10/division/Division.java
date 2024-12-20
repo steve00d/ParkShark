@@ -14,8 +14,8 @@ public class Division {
     @Column(name = "name")
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_director_id")
     private Director director;
 
     @Column(name = "original_company_name")
@@ -43,9 +43,7 @@ public class Division {
         return originalCompanyName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     public Long getId() {
         return id;

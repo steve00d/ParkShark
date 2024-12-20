@@ -1,17 +1,20 @@
 package com.switchfully.parkshark_2024_10.division.dto;
 
-import com.switchfully.parkshark_2024_10.user.Director;
+import com.switchfully.parkshark_2024_10.director.dto.DirectorDto;
+
+
+
 
 public class DivisionDto {
     private Long id;
     private String name;
-    private Director director;
+    private DirectorDto directorDto;
     private String originalCompanyName;
 
-    public DivisionDto(Long id, String name, Director director, String originalCompanyName) {
+    public DivisionDto(Long id, String name, DirectorDto directorDto, String originalCompanyName) {
         this.id = id;
         this.name = name;
-        this.director = director;
+        this.directorDto = directorDto;
         this.originalCompanyName = originalCompanyName;
     }
 
@@ -23,8 +26,8 @@ public class DivisionDto {
         return name;
     }
 
-    public Director getDirector() {
-        return director;
+    public DirectorDto getDirectorDto() {
+        return directorDto;
     }
 
     public String getOriginalCompanyName() {
