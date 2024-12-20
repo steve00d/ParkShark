@@ -36,8 +36,8 @@ public class CreateUserTest {
         // then
         Assertions.assertNotNull(found, "Director should not be null after retrieval");
         Assertions.assertEquals(director.getId(), found.getId(), "Director IDs should match");
-        Assertions.assertEquals("Bert", found.getFirst_name(), "First names should match");
-        Assertions.assertEquals("Poelmans", found.getLast_name(), "Last names should match");
+        Assertions.assertEquals("Bert", found.getFirstName(), "First names should match");
+        Assertions.assertEquals("Poelmans", found.getLastName(), "Last names should match");
         Assertions.assertEquals("br@be.com", found.getEmail(), "Emails should match");
 
         Assertions.assertEquals(encodedPassword, found.getPassword(), "Password should be stored encoded");

@@ -3,16 +3,24 @@ package com.switchfully.parkshark_2024_10.auth;
 import com.switchfully.parkshark_2024_10.exceptions.UnauthorizedException;
 import com.switchfully.parkshark_2024_10.user.Person;
 import com.switchfully.parkshark_2024_10.user.UserService;
+import org.junit.jupiter.api.AutoClose;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@SpringBootTest
 class AuthServiceTest {
 
+    @Autowired
     private AuthService authService;
+
+    @MockitoSpyBean
     private UserService userService;
 
     @BeforeEach
