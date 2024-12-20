@@ -31,6 +31,13 @@ public abstract class Person {
     public Person() {
     }
 
+    public Person(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
     public String getFirst_name() {
         return firstName;
     }

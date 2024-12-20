@@ -25,6 +25,12 @@ public class Director extends Person {
 
     }
 
+    public Director(Division division, String firstName, String lastName, String email, String password) {
+        super(firstName, lastName, email, password);
+        this.division = division;
+
+    }
+
     @Override
     public Role getRole() {
         return null;
