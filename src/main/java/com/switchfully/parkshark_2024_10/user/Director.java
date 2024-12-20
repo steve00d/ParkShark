@@ -9,20 +9,20 @@ import jakarta.persistence.*;
 public class Director extends Person {
 
 
+    @OneToOne(mappedBy = "director")
+    private Division division;
 
 
-       @OneToOne
-       @JoinColumn(name="FK_DIVISION_ID")
-       private Division division;
-
+    public Director(String firstName, String lastName, String email, String password, Division division) {
+        super(firstName, lastName, email, password);
+        this.division = division;
+    }
 
     public Director(Division division) {
-
         this.division = division;
     }
 
     public Director() {
-
     }
 
     @Override
