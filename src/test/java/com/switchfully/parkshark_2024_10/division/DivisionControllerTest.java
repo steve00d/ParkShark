@@ -24,7 +24,7 @@ class DivisionControllerTest {
 
     @BeforeEach
     void setUp() {
-        RestAssured.port = 8080;
+        RestAssured.port = port;
     }
 
     @Test
