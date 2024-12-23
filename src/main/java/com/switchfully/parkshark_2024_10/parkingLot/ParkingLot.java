@@ -23,8 +23,8 @@ public class ParkingLot {
     @Column(name = "capacity")
     private int Capacity;
 
-    @OneToOne
-    @JoinColumn(name = "contact_information")
+    @ManyToOne
+    @JoinColumn(name = "fk_contact_information_id")
     private ContactInformation contactPerson;
 
     @OneToOne

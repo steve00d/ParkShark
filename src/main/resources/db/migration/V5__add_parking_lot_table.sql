@@ -8,7 +8,4 @@ create table parking_lot
     fk_contact_information_id bigint not null,
     fk_address_id bigint not null,
     price_per_hour numeric(4,2) not null,
-
-
-
 );

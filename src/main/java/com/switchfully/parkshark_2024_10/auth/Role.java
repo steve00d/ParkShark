@@ -7,7 +7,8 @@ public enum Role {
 
     MANAGER(
             Permission.CAN_VIEW_DIVISIONS,
-            Permission.CAN_VIEW_PARKING_LOTS
+            Permission.CAN_VIEW_PARKING_LOTS,
+            Permission.CAN_CREATE_PARKING_LOTS
     ),
     MEMBER(
 

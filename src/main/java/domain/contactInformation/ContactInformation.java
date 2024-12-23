@@ -1,10 +1,13 @@
 package domain.contactInformation;
 
+import com.switchfully.parkshark_2024_10.parkingLot.ParkingLot;
 import domain.address.Address;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+
+import java.util.List;
 
 @Entity
 @Table(name = "contact_information")
@@ -34,6 +37,9 @@ public class ContactInformation {
     @OneToOne
     @JoinColumn (name = "fk_address_id")
     private Address address;
+
+@OneToMany(mappedBy = "contactInformation")
+    private List<ParkingLot> parkingLots;
 
     public ContactInformation(String firstName, String lastName, String primaryPhoneNumber, @Nullable String secondaryPhoneNumber, String emailAddress, Address address) {
         this.firstName = firstName;
@@ -74,5 +80,13 @@ public class ContactInformation {
 
     public Address getAddress() {
         return address;
+    }
+
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
+    public void setParkingLots(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
     }
 }
