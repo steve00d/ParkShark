@@ -21,12 +21,8 @@ public class AuthService {
             throw new IllegalArgumentException("Invalid Authorization header");
         }
 
-
         String base64Token = authHeader.substring(PREFIX.length());
-
-
         String token = convertToken(base64Token);
-
 
         String[] credentials = token.split(SEPARATOR, 2);
         if (credentials.length != 2) {

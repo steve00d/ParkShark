@@ -4,15 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Role {
-
     MANAGER(
             Permission.CAN_VIEW_DIVISIONS,
             Permission.CAN_VIEW_PARKING_LOTS
     ),
     MEMBER(
-
     );
-
     private final List<Permission> permissions = new ArrayList<>();
 
     Role(Permission... permissions) {
