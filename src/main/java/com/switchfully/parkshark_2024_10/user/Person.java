@@ -4,6 +4,8 @@ package com.switchfully.parkshark_2024_10.user;
 import com.switchfully.parkshark_2024_10.auth.Permission;
 import com.switchfully.parkshark_2024_10.auth.Role;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "\"user\"")
@@ -16,15 +18,21 @@ public abstract class Person {
     @SequenceGenerator(sequenceName = "user_seq", allocationSize = 1, name = "user_seq")
     private Long id;
 
+    @NotBlank
     @Column(name="first_name")
     private String firstName;
 
+    @NotBlank
     @Column(name="last_name")
     private String lastName;
 
+    @NotBlank
+    @Email(message = "Email should be valid")
     @Column(name="email")
     private String email;
 
+
+    @NotBlank
     @Column(name="password")
     private String password;
 
