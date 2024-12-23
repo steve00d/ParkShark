@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @AutoConfigureTestDatabase
 class DivisionControllerTest {
 
+    private String token;
 
     @MockitoBean
     AuthService authService;
@@ -36,7 +37,11 @@ class DivisionControllerTest {
 
     @BeforeEach
     void setUp() {
+
         RestAssured.port = port;
+
+        token = "Basic " + Base64.getEncoder()
+                .encodeToString(("jane.doe@gmail.com"+ ":" + "cHdk").getBytes());
     }
 
     @Test
@@ -84,17 +89,13 @@ class DivisionControllerTest {
     @DisplayName("Get all divisions as manager")
     void getAllDivisions_AsManager_returnsAListOfDivisionDtos() {
         // when
-
-        String encodedPassword = Base64.getEncoder().encodeToString("pwd".getBytes());
-        Manager manager = new Manager("Jane", "Doe", "jane.doe@gmail.com", encodedPassword);
-        CreateDirectorDto director1 = new CreateDirectorDto("Director1", "Last1", "dir1@gmail.com", "password1", null);
-        CreateDirectorDto director2 = new CreateDirectorDto("Director2", "Last2", "dir2@gmail.com", "password2", null);
+        String password = "pwd";
+        Manager manager = new Manager("Jane", "Doe", "jane.doe@gmail.com", password);
+        CreateDirectorDto director1 = new CreateDirectorDto("Director1", "Last1", "dir1@gmail.com", password, null);
+        CreateDirectorDto director2 = new CreateDirectorDto("Director2", "Last2", "dir2@gmail.com", password, null);
 
         CreateDivisionDto division1 = new CreateDivisionDto("Division One", director1, "Old Company 1");
         CreateDivisionDto division2 = new CreateDivisionDto("Division Two", director2, "Old Company 2");
-
-        String token = "Basic " + Base64.getEncoder()
-                .encodeToString((manager.getEmail() + ":" + manager.getPassword()).getBytes());
 
 
         RestAssured.given()
