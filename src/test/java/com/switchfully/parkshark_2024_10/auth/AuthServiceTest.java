@@ -3,10 +3,7 @@ package com.switchfully.parkshark_2024_10.auth;
 import com.switchfully.parkshark_2024_10.exceptions.UnauthorizedException;
 import com.switchfully.parkshark_2024_10.user.Person;
 import com.switchfully.parkshark_2024_10.user.UserService;
-import org.junit.jupiter.api.AutoClose;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
@@ -22,12 +19,6 @@ class AuthServiceTest {
 
     @MockitoSpyBean
     private UserService userService;
-
-    @BeforeEach
-    void setUp() {
-        userService = mock(UserService.class);
-        authService = new AuthService(userService);
-    }
 
     @Test
     void extractCredentials_validHeader_returnsCredentials() {
