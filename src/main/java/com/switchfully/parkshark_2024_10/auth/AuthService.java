@@ -36,22 +36,11 @@ public class AuthService {
         return new String(java.util.Base64.getDecoder().decode(base64Token));
     }
 
-
     public Person userAuthenticated(String authHeader) {
-        try {
+        String[] credentials = extractCredentials(authHeader);
+        String username = credentials[0];
+        String password = credentials[1];
 
-            String[] credentials = extractCredentials(authHeader);
-            String username = credentials[0];
-            String password = credentials[1];
-
-
-            return userService.authenticate(username, password);
-        } catch (UnauthorizedException e) {
-
-            throw e;
-
-        }
+        return userService.authenticate(username, password);
     }
-
-
 }
