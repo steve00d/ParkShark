@@ -11,9 +11,10 @@ public class Director extends Person {
 
 
 
-       @OneToOne
-       @JoinColumn(name="FK_DIVISION_ID")
-       private Division division;
+//    @OneToOne(cascade = CascadeType.PERSIST)
+//    @JoinColumn(name="FK_DIVISION_ID")
+    @Transient
+    private Division division;
 
 
     public Director(Division division) {
@@ -25,13 +26,23 @@ public class Director extends Person {
 
     }
 
+    public Director(Division division, String firstName, String lastName, String email, String password) {
+        super(firstName, lastName, email, password);
+        this.division = division;
+
+    }
+
     @Override
     public Role getRole() {
         return null;
     }
 
 
+
+
     public Division getDivision() {
         return division;
     }
+
+
 }
