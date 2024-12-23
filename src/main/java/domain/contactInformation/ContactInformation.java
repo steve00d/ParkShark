@@ -4,6 +4,7 @@ import domain.address.Address;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -14,28 +15,40 @@ public class ContactInformation {
     @SequenceGenerator(name = "contact_information_seq", sequenceName = "contact_information_seq", allocationSize = 1)
     private Long id;
 
+    @NotBlank
     @Column(name = "first_name")
     private String firstName;
 
+    @NotBlank
     @Column(name = "last_name")
     private String lastName;
 
+    @NotBlank
     @Column(name = "primary_phone_number")
-    @NotNull
     private String primaryPhoneNumber;
 
+    @Nullable
     @Column(name = "secondary_phone_number")
     private String secondaryPhoneNumber;
 
-    @Column(name = "email_address")
+    @NotBlank
     @Email(message = "Invalid email address")
+    @Column(name = "email_address")
     private String emailAddress;
 
+    @NotNull
     @OneToOne
-    @JoinColumn (name = "fk_address_id")
+    @JoinColumn(name = "fk_address_id")
     private Address address;
 
-    public ContactInformation(String firstName, String lastName, String primaryPhoneNumber, @Nullable String secondaryPhoneNumber, String emailAddress, Address address) {
+    public ContactInformation(
+            String firstName,
+            String lastName,
+            String primaryPhoneNumber,
+            String secondaryPhoneNumber,
+            String emailAddress,
+            Address address
+    ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.primaryPhoneNumber = primaryPhoneNumber;
@@ -60,7 +73,7 @@ public class ContactInformation {
         return lastName;
     }
 
-    public @NotNull String getPrimaryPhoneNumber() {
+    public String getPrimaryPhoneNumber() {
         return primaryPhoneNumber;
     }
 
