@@ -16,13 +16,13 @@ public abstract class Person {
     @SequenceGenerator(sequenceName = "user_seq", allocationSize = 1, name = "user_seq")
     private Long id;
 
-    @Column(name="FIRST_NAME")
+    @Column(name="first_name")
     private String firstName;
 
-    @Column(name="LAST_NAME")
+    @Column(name="last_name")
     private String lastName;
 
-    @Column(name="EMAIL")
+    @Column(name="email")
     private String email;
 
     @Column(name="password")
@@ -67,6 +67,4 @@ public abstract class Person {
     public boolean hasPermission(Permission permission) {
         return getRole().hasPermission(permission);
     }
-
-
 }
