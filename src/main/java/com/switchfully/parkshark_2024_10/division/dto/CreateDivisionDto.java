@@ -1,5 +1,6 @@
 package com.switchfully.parkshark_2024_10.division.dto;
 
+import com.switchfully.parkshark_2024_10.director.dto.CreateDirectorDto;
 import com.switchfully.parkshark_2024_10.user.Director;
 import jakarta.validation.constraints.NotNull;
 

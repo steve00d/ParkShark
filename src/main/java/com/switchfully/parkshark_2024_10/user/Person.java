@@ -12,8 +12,8 @@ import jakarta.persistence.*;
 discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSON_SEQ")
-    @SequenceGenerator(sequenceName = "person_seq", allocationSize = 1, name = "PERSON_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_SEQ")
+    @SequenceGenerator(sequenceName = "user_seq", allocationSize = 1, name = "USER_SEQ")
     private Long id;
 
     @Column(name="FIRST_NAME")

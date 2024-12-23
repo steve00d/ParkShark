@@ -1,7 +1,7 @@
 package com.switchfully.parkshark_2024_10.division;
 
 
-import com.switchfully.parkshark_2024_10.division.dto.CreateDirectorDto;
+import com.switchfully.parkshark_2024_10.director.dto.CreateDirectorDto;
 import com.switchfully.parkshark_2024_10.division.dto.CreateDivisionDto;
 import com.switchfully.parkshark_2024_10.division.dto.DivisionDto;
 import com.switchfully.parkshark_2024_10.user.Manager;
@@ -32,7 +32,7 @@ class DivisionControllerTest {
     void addDivisionAsManager() {
         Manager manager = new Manager("manaa", "geeer", "manager@gmail.com", "1234");
         CreateDirectorDto director = new CreateDirectorDto("steve", "daenen",
-                "steve@gmail.com", "1234");
+                "steve@gmail.com", "1234",null);
         CreateDivisionDto createDivisionDto = new CreateDivisionDto(
                 "Division 1", director, "old company");
 

@@ -24,10 +24,10 @@ public class DivisionController {
     @PostMapping(value = "", produces = "application/json", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public DivisionDto addDivision(@RequestBody CreateDivisionDto createDivisionDto, @RequestHeader("Authorization") String token) {
-        Person user = authService.userAuthenticated(token);
-        if (!user.hasPermission(Permission.CAN_CREATE_DIVISIONS)) {
-            throw new UnauthorizedException();
-        }
+ //       Person user = authService.userAuthenticated(token);
+//        if (!user.hasPermission(Permission.CAN_CREATE_DIVISIONS)) {
+//            throw new UnauthorizedException();
+//        }
        return divisionService.addDivision(createDivisionDto);
     }
 }
