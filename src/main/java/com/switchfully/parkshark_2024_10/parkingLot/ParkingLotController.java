@@ -3,7 +3,9 @@ package com.switchfully.parkshark_2024_10.parkingLot;
 import com.switchfully.parkshark_2024_10.auth.AuthService;
 import com.switchfully.parkshark_2024_10.auth.Permission;
 import com.switchfully.parkshark_2024_10.exceptions.UnauthorizedException;
+import com.switchfully.parkshark_2024_10.parkingLot.dto.CreateParkingLotDto;
 import com.switchfully.parkshark_2024_10.user.Person;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,6 +19,7 @@ public class ParkingLotController {
     }
 
     @PostMapping(value = "", consumes = "application/json", produces = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
     public ParkingLotDto createParkingLot(@RequestBody CreateParkingLotDto createParkingLotDto, @RequestHeader String token) {
         Person person = authService.userAuthenticated(token);
         if (!person.hasPermission(Permission.CAN_CREATE_PARKING_LOTS)) {

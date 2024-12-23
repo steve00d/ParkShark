@@ -34,8 +34,7 @@ public class ParkingLot {
     @Column(name = "price_per_hour")
     private double pricePerHour;
 
-    public ParkingLot(Long id, String name, ParkingLotCategory parkingLotCategory, int capacity, ContactInformation contactPerson, Address address, double pricePerHour) {
-        this.id = id;
+    public ParkingLot(String name, ParkingLotCategory parkingLotCategory, int capacity, ContactInformation contactPerson, Address address, double pricePerHour) {
         this.name = name;
         this.parkingLotCategory = parkingLotCategory;
         this.Capacity = capacity;
