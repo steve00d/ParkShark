@@ -32,5 +32,4 @@ public class Director extends Person {
     public Division getDivision() {
         return division;
     }
-
 }

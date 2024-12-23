@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/division")
 public class DivisionController {
@@ -29,5 +31,15 @@ public class DivisionController {
             throw new UnauthorizedException();
         }
         return divisionService.addDivision(createDivisionDto);
+    }
+
+    @GetMapping(path="", produces = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public List<DivisionDto> getAllDivisions(@RequestHeader("Authorization") String token){
+        Person user = authService.userAuthenticated(token);
+        if (!user.hasPermission(Permission.CAN_VIEW_DIVISIONS)){
+            throw new UnauthorizedException();
+        }
+        return divisionService.getAllDivisions();
     }
 }
