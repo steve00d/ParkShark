@@ -5,27 +5,29 @@ import com.switchfully.parkshark_2024_10.auth.Permission;
 import com.switchfully.parkshark_2024_10.auth.Role;
 import jakarta.persistence.*;
 
+import java.util.Base64;
+
 @Entity
 @Table(name = "\"user\"")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="person_type",
-discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(name = "person_type",
+        discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @SequenceGenerator(sequenceName = "user_seq", allocationSize = 1, name = "user_seq")
     private Long id;
 
-    @Column(name="FIRST_NAME")
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name="LAST_NAME")
+    @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name="EMAIL")
+    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
     public Person() {
@@ -68,5 +70,8 @@ public abstract class Person {
         return getRole().hasPermission(permission);
     }
 
-
+    @PrePersist
+    protected void encodePassword() {
+        this.password = Base64.getEncoder().encodeToString(this.password.getBytes());
+    }
 }
