@@ -2,12 +2,10 @@ package com.switchfully.parkshark_2024_10.division;
 
 
 import com.switchfully.parkshark_2024_10.auth.AuthService;
-import com.switchfully.parkshark_2024_10.director.dto.CreateDirectorDto;
-import com.switchfully.parkshark_2024_10.division.dto.CreateDivisionDto;
 import com.switchfully.parkshark_2024_10.division.dto.DivisionDto;
+import com.switchfully.parkshark_2024_10.user.Director;
 import com.switchfully.parkshark_2024_10.user.Manager;
 import io.restassured.RestAssured;
-import io.restassured.common.mapper.TypeRef;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import java.util.Base64;
 import java.util.List;
@@ -28,10 +27,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @AutoConfigureTestDatabase
 class DivisionControllerTest {
 
-    private String token;
-
     @MockitoBean
     AuthService authService;
+
+    @MockitoSpyBean
+    DivisionRepository divisionRepository;
+
     @LocalServerPort
     private int port;
 
@@ -39,9 +40,6 @@ class DivisionControllerTest {
     void setUp() {
 
         RestAssured.port = port;
-
-        token = "Basic " + Base64.getEncoder()
-                .encodeToString(("jane.doe@gmail.com"+ ":" + "cHdk").getBytes());
     }
 
     @Test
@@ -91,32 +89,33 @@ class DivisionControllerTest {
         // when
         String password = "pwd";
         Manager manager = new Manager("Jane", "Doe", "jane.doe@gmail.com", password);
-        CreateDirectorDto director1 = new CreateDirectorDto("Director1", "Last1", "dir1@gmail.com", password, null);
-        CreateDirectorDto director2 = new CreateDirectorDto("Director2", "Last2", "dir2@gmail.com", password, null);
+        String token = "Basic " + Base64.getEncoder()
+                .encodeToString((manager.getEmail() + ":" + manager.getPassword()).getBytes());
+        Mockito.when(authService.userAuthenticated(token)).thenReturn(manager);
 
-        CreateDivisionDto division1 = new CreateDivisionDto("Division One", director1, "Old Company 1");
-        CreateDivisionDto division2 = new CreateDivisionDto("Division Two", director2, "Old Company 2");
-
-
-        RestAssured.given()
-                .header("Authorization", token)
-                .contentType("application/json")
-                .body(division1)
-                .when()
-                .post("/api/division")
-                .then()
-                .statusCode(201);
-
-
-        RestAssured.given()
-                .header("Authorization", token)
-                .contentType("application/json")
-                .body(division2)
-                .when()
-                .post("/api/division")
-                .then()
-                .statusCode(201);
-
+        Mockito.when(divisionRepository.findAll())
+                .thenReturn(List.of(
+                        new Division(
+                                "Division One",
+                                new Director(
+                                        "Director1",
+                                        "Director1",
+                                        "XXXXXXXXXXXXXXXXXXX",
+                                        password,
+                                        null
+                                ),
+                                "Company1"),
+                        new Division(
+                                "Division Two",
+                                new Director(
+                                        "Director2",
+                                        "Director2",
+                                        "XXXXXXXXXXXXXXXXXXX",
+                                        password,
+                                        null
+                                ),
+                                "Company2")
+                ));
 
         List<DivisionDto> divisions = RestAssured.given()
                 .header("Authorization", token)
@@ -127,9 +126,8 @@ class DivisionControllerTest {
                 .statusCode(200)
                 .extract()
                 .body()
-                .as(new TypeRef<List<DivisionDto>>() {
-                });
-
+                .jsonPath()
+                .getList(".", DivisionDto.class);
 
         assertThat(divisions).hasSize(2);
 

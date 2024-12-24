@@ -68,12 +68,12 @@ class DivisionRepositoryTest {
         divisionRepository.save(division2);
 
         // when fetch all the divisions
-        List<Division> divisions = divisionRepository.getAllDivisions();
+        List<Division> divisions = divisionRepository.findAll();
 
 
         assertThat(divisions).hasSize(2);
 
-        Division firstDivision = divisions.get(0);
+        Division firstDivision = divisions.getFirst();
         assertThat(firstDivision.getName()).isEqualTo("Division One");
         assertThat(firstDivision.getOriginalCompanyName()).isEqualTo("Old Company 1");
 
