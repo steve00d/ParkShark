@@ -1,16 +1,23 @@
 package com.switchfully.parkshark_2024_10.division.dto;
 
 import com.switchfully.parkshark_2024_10.director.dto.CreateDirectorDto;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class CreateDivisionDto {
+    @NotBlank
     String name;
-    CreateDirectorDto createDirectorDto;
+
+    @NotNull
+    @Valid
+    CreateDirectorDto director;
+
     String originalCompanyName;
 
-    public CreateDivisionDto(@NotNull String name, @NotNull CreateDirectorDto createDirectorDto, String originalCompanyName) {
+    public CreateDivisionDto(String name, CreateDirectorDto director, String originalCompanyName) {
         this.name = name;
-        this.createDirectorDto = createDirectorDto;
+        this.director = director;
         this.originalCompanyName = originalCompanyName;
     }
 
@@ -19,7 +26,7 @@ public class CreateDivisionDto {
     }
 
     public CreateDirectorDto getCreateDirectorDto() {
-        return createDirectorDto;
+        return director;
     }
 
     public String getOriginalCompanyName() {
