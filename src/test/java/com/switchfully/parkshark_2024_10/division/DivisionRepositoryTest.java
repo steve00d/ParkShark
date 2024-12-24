@@ -17,7 +17,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-@Transactional
 class DivisionRepositoryTest {
 
     @Autowired
