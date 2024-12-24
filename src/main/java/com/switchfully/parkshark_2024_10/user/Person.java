@@ -5,6 +5,8 @@ import com.switchfully.parkshark_2024_10.auth.Permission;
 import com.switchfully.parkshark_2024_10.auth.Role;
 import jakarta.persistence.*;
 
+import java.util.Base64;
+
 @Entity
 @Table(name = "\"user\"")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -68,5 +70,8 @@ public abstract class Person {
         return getRole().hasPermission(permission);
     }
 
-
+    @PrePersist
+    protected void encodePassword() {
+        this.password = Base64.getEncoder().encodeToString(this.password.getBytes());
+    }
 }
