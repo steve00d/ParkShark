@@ -14,7 +14,8 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 import java.util.Base64;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class DivisionControllerTest {
@@ -32,7 +33,7 @@ class DivisionControllerTest {
     void addDivisionAsManager() {
         Manager manager = new Manager("manaa", "geeer", "manager@gmail.com", "1234");
         CreateDirectorDto director = new CreateDirectorDto("steve", "daenen",
-                "steve@gmail.com", "1234");
+                "steve@gmail.com", "1234", null);
         CreateDivisionDto createDivisionDto = new CreateDivisionDto(
                 "Division 1", director, "old company");
 

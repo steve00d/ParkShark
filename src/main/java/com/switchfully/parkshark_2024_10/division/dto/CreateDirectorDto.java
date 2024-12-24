@@ -1,7 +1,5 @@
 package com.switchfully.parkshark_2024_10.division.dto;
 
-import com.switchfully.parkshark_2024_10.division.Division;
-
 public class CreateDirectorDto {
     String firstName;
     String lastName;

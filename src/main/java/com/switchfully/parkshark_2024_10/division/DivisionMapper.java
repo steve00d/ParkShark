@@ -1,14 +1,20 @@
 package com.switchfully.parkshark_2024_10.division;
 
 import com.switchfully.parkshark_2024_10.director.DirectorMapper;
+import com.switchfully.parkshark_2024_10.director.dto.CreateDirectorDto;
 import com.switchfully.parkshark_2024_10.director.dto.DirectorDto;
 import com.switchfully.parkshark_2024_10.division.dto.CreateDivisionDto;
 import com.switchfully.parkshark_2024_10.division.dto.DivisionDto;
+import com.switchfully.parkshark_2024_10.user.Director;
 
 public abstract class DivisionMapper {
 
     public static Division mapToDivision(CreateDivisionDto createDivisionDto) {
-        return new Division(createDivisionDto.getName(), createDivisionDto.getCreateDirectorDto(), createDivisionDto.getOriginalCompanyName());
+        CreateDirectorDto createDirectorDto = createDivisionDto.getCreateDirectorDto();
+        Director director = DirectorMapper.mapToDirector(createDirectorDto);
+        return new Division(createDivisionDto.getName(),
+                director,
+                createDivisionDto.getOriginalCompanyName());
     }
 
     public static DivisionDto mapToDivisionDto(Division division) {
@@ -16,7 +22,8 @@ public abstract class DivisionMapper {
         return new DivisionDto(
                 division.getId(),
                 division.getName(),
-                division.getDirector(),
-                division.getOriginalCompanyName());
+                directorDto,
+                division.getOriginalCompanyName()
+        );
     }
 }

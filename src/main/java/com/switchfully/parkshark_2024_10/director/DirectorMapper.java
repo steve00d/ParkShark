@@ -25,8 +25,8 @@ public abstract class DirectorMapper {
     public static DirectorDto mapToDirectorDto(Director director) {
         return new DirectorDto(
                 director.getId(),
-                director.getFirst_name(),
-                director.getLast_name(),
+                director.getFirstName(),
+                director.getLastName(),
                 director.getEmail(),
                 director.getPassword(),
                 null

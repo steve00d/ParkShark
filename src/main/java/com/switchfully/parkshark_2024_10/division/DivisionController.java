@@ -28,6 +28,6 @@ public class DivisionController {
         if (!user.hasPermission(Permission.CAN_CREATE_DIVISIONS)) {
             throw new UnauthorizedException();
         }
-       return divisionService.addDivision(createDivisionDto);
+        return divisionService.addDivision(createDivisionDto);
     }
 }

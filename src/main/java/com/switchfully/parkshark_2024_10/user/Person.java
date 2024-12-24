@@ -8,32 +8,25 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "\"user\"")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="person_type",
-discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(name = "person_type",
+        discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
     @SequenceGenerator(sequenceName = "user_seq", allocationSize = 1, name = "user_seq")
     private Long id;
 
-    @Column(name="FIRST_NAME")
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name="LAST_NAME")
+    @Column(name = "LAST_NAME")
     private String lastName;
 
-    @Column(name="EMAIL")
+    @Column(name = "EMAIL")
     private String email;
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
-
-    public Person(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-    }
 
     public Person() {
     }

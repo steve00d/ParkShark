@@ -2,10 +2,7 @@ package com.switchfully.parkshark_2024_10.director.dto;
 
 import com.switchfully.parkshark_2024_10.division.dto.DivisionDto;
 
-import java.io.Serializable;
-
-
-public class DirectorDto implements Serializable {
+public class DirectorDto {
     Long id;
     String firstName;
     String lastName;

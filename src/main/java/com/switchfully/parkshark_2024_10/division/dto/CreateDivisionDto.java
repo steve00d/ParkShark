@@ -1,6 +1,6 @@
 package com.switchfully.parkshark_2024_10.division.dto;
 
-import com.switchfully.parkshark_2024_10.user.Director;
+import com.switchfully.parkshark_2024_10.director.dto.CreateDirectorDto;
 import jakarta.validation.constraints.NotNull;
 
 public class CreateDivisionDto {
@@ -8,7 +8,7 @@ public class CreateDivisionDto {
     CreateDirectorDto createDirectorDto;
     String originalCompanyName;
 
-    public CreateDivisionDto(@NotNull String name,@NotNull CreateDirectorDto createDirectorDto, String originalCompanyName) {
+    public CreateDivisionDto(@NotNull String name, @NotNull CreateDirectorDto createDirectorDto, String originalCompanyName) {
         this.name = name;
         this.createDirectorDto = createDirectorDto;
         this.originalCompanyName = originalCompanyName;
