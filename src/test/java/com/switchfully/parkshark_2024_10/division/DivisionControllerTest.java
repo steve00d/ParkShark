@@ -2,9 +2,8 @@ package com.switchfully.parkshark_2024_10.division;
 
 
 import com.switchfully.parkshark_2024_10.auth.AuthService;
-import com.switchfully.parkshark_2024_10.director.dto.CreateDirectorDto;
-import com.switchfully.parkshark_2024_10.division.dto.CreateDivisionDto;
 import com.switchfully.parkshark_2024_10.division.dto.DivisionDto;
+import com.switchfully.parkshark_2024_10.user.Director;
 import com.switchfully.parkshark_2024_10.user.Manager;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +17,9 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import java.util.Base64;
+import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -26,16 +27,20 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @AutoConfigureTestDatabase
 class DivisionControllerTest {
 
+    @MockitoBean
+    AuthService authService;
+
+    @MockitoSpyBean
+    DivisionRepository divisionRepository;
+
     @LocalServerPort
     private int port;
 
     @BeforeEach
     void setUp() {
+
         RestAssured.port = port;
     }
-
-    @MockitoBean
-    AuthService authService;
 
     @Test
     @DisplayName("Division can be created as manager")
@@ -78,5 +83,61 @@ class DivisionControllerTest {
         assertEquals("test company", response.getOriginalCompanyName());
     }
 
+    @Test
+    @DisplayName("Get all divisions as manager")
+    void getAllDivisions_AsManager_returnsAListOfDivisionDtos() {
+        // when
+        String password = "pwd";
+        Manager manager = new Manager("Jane", "Doe", "jane.doe@gmail.com", password);
+        String token = "Basic " + Base64.getEncoder()
+                .encodeToString((manager.getEmail() + ":" + manager.getPassword()).getBytes());
+        Mockito.when(authService.userAuthenticated(token)).thenReturn(manager);
+
+        Mockito.when(divisionRepository.findAll())
+                .thenReturn(List.of(
+                        new Division(
+                                "Division One",
+                                new Director(
+                                        "Director1",
+                                        "Director1",
+                                        "XXXXXXXXXXXXXXXXXXX",
+                                        password,
+                                        null
+                                ),
+                                "Company1"),
+                        new Division(
+                                "Division Two",
+                                new Director(
+                                        "Director2",
+                                        "Director2",
+                                        "XXXXXXXXXXXXXXXXXXX",
+                                        password,
+                                        null
+                                ),
+                                "Company2")
+                ));
+
+        List<DivisionDto> divisions = RestAssured.given()
+                .header("Authorization", token)
+                .contentType("application/json")
+                .when()
+                .get("/api/division")
+                .then()
+                .statusCode(200)
+                .extract()
+                .body()
+                .jsonPath()
+                .getList(".", DivisionDto.class);
+
+        assertThat(divisions).hasSize(2);
+
+        DivisionDto firstDivision = divisions.get(0);
+        assertEquals("Division One", firstDivision.getName());
+        assertEquals("Director1", firstDivision.getDirectorDto().getFirstName());
+
+        DivisionDto secondDivision = divisions.get(1);
+        assertEquals("Division Two", secondDivision.getName());
+        assertEquals("Director2", secondDivision.getDirectorDto().getFirstName());
+    }
 
 }
