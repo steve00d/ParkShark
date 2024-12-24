@@ -7,6 +7,7 @@ import com.switchfully.parkshark_2024_10.division.dto.DivisionDto;
 import com.switchfully.parkshark_2024_10.exceptions.UnauthorizedException;
 import com.switchfully.parkshark_2024_10.user.Person;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,10 +21,9 @@ public class DivisionController {
         this.authService = authService;
     }
 
-
     @PostMapping(value = "", produces = "application/json", consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public DivisionDto addDivision(@RequestBody CreateDivisionDto createDivisionDto, @RequestHeader("Authorization") String token) {
+    public DivisionDto addDivision(@RequestBody @Validated CreateDivisionDto createDivisionDto, @RequestHeader("Authorization") String token) {
         Person user = authService.userAuthenticated(token);
         if (!user.hasPermission(Permission.CAN_CREATE_DIVISIONS)) {
             throw new UnauthorizedException();
