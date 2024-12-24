@@ -1,6 +1,7 @@
 package com.switchfully.parkshark_2024_10.user;
 
 import com.switchfully.parkshark_2024_10.division.Division;
+import com.switchfully.parkshark_2024_10.division.DivisionRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +17,13 @@ public class CreateUserTest {
 
     @Test
     void saveDirector_shouldPersistAndRetrieveDirectorCorrectly() {
-
         String encodedPassword = Base64.getEncoder().encodeToString("pwd".getBytes());
 
-
-        Division division = new Division();
-        division.setId(1L);
-        Director director = new Director(division, "Bert", "Poelmans", "br@be.com", encodedPassword);
-
-
-
+        Division division = new Division("Test division");
+        Director director = new Director("Bert", "Poelmans", "br@be.com", "pwd", division);
 
         // when
         userRepository.save(director);
-
 
         Person found = userRepository.findByName("Bert");
 

@@ -1,0 +1,1 @@
+update "user" set password = 'Y0hkaw==' where id = 1;
