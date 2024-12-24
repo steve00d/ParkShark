@@ -15,10 +15,6 @@ public class CreateUserTest {
     @Autowired
     private UserRepository userRepository;
 
-
-    @Autowired
-    private DivisionRepository divisionRepository;
-
     @Test
     void saveDirector_shouldPersistAndRetrieveDirectorCorrectly() {
         String encodedPassword = Base64.getEncoder().encodeToString("pwd".getBytes());
