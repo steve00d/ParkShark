@@ -8,16 +8,20 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq")
     @SequenceGenerator(name = "address_seq", sequenceName = "address_seq", allocationSize = 1)
-    private long id;
+    private Long id;
+
     @Column(name = "street")
-    private  String street;
+    private String street;
+
     @Column(name = "number")
-    private  int number;
+    private int number;
+
     @Column(name = "extra")
-    private  String extra;
-    @OneToOne
-    @JoinColumn(name = "code")
-    private  Zip zipCode;
+    private String extra;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, targetEntity = Zip.class)
+    @JoinColumn(name = "fk_zip_code", nullable = false)
+    private Zip zipCode;
 
     public Address(String street, int number, String extra, Zip zipCode) {
         this.street = street;
@@ -30,7 +34,7 @@ public class Address {
         // DESERIALIZATION
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

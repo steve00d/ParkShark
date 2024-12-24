@@ -9,17 +9,20 @@ public class Zip {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "zip_code_seq")
     @SequenceGenerator(name = "zip_code_seq", sequenceName = "zip_code_seq", allocationSize = 1)
     private Long id;
-    @Column(name = "code")
+
+    @Column(name = "zip_code")
     private String code;
+
     @Column(name = "city")
     private String city;
-    @Column(name = "state")
-    private String state;
 
-    public Zip(String code, String city, String state) {
+    @Column(name = "country")
+    private CountryCode country;
+
+    public Zip(String code, String city, CountryCode country) {
         this.code = code;
         this.city = city;
-        this.state = state;
+        this.country = country;
     }
 
     public Zip() {
@@ -38,7 +41,15 @@ public class Zip {
         return city;
     }
 
-    public String getState() {
-        return state;
+    public CountryCode getCountry() {
+        return country;
+    }
+
+    public String getCountryCode() {
+        return getCountry().getAlpha2();
+    }
+
+    public String getCountryName() {
+        return getCountry().getName();
     }
 }
