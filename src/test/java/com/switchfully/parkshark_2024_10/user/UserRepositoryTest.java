@@ -25,10 +25,9 @@ public class UserRepositoryTest {
     @Test
     void findByEmailAndPassword_shouldReturnCorrectPerson() {
         // given
-        Division division = new Division();
+        Division division = new Division("findByEmailAndPassword_shouldReturnCorrectPerson");
 
-
-        Director director = new Director(division, "Jane", "Doe", "jane.doe@parkshark.com", encodedPassword);
+        Director director = new Director("Jane", "Doe", "jane.doe@parkshark.com", "pwd", division);
         userRepository.save(director);
 
         // When
@@ -45,11 +44,11 @@ public class UserRepositoryTest {
     @Test
     void findByEmailAndPassword_shouldReturnNullWhenCredentialsDoNotMatch() {
         // when
-        Division division = new Division();
+        Division division = new Division("findByEmailAndPassword_shouldReturnNullWhenCredentialsDoNotMatch");
 
 
         String wrongEncodedPassword = Base64.getEncoder().encodeToString("wrongPAssword".getBytes());
-        Director director = new Director(division, "John", "Smith", "john.smith@parjshark.com", encodedPassword);
+        Director director = new Director("John", "Smith", "john.smith@parjshark.com", encodedPassword, division);
         userRepository.save(director);
 
         // when
@@ -62,9 +61,9 @@ public class UserRepositoryTest {
     @Test
     void findByName_shouldReturnCorrectPerson() {
         // given
-        Division division = new Division();
+        Division division = new Division("findByName_shouldReturnCorrectPerson");
 
-        Director director = new Director(division, "Alice", "Johnson", "alice.johnson@parkshark.com", encodedPassword);
+        Director director = new Director("Alice", "Johnson", "alice.johnson@parkshark.com", encodedPassword, division);
         userRepository.save(director);
 
         // when
@@ -79,9 +78,9 @@ public class UserRepositoryTest {
     @Test
     void findByLastName_shouldReturnCorrectPerson() {
         // given
-        Division division = new Division();
+        Division division = new Division("findByLastName_shouldReturnCorrectPerson");
 
-        Director director = new Director(division, "Alice", "Johnson", "alice.johnson@parkshark.com", encodedPassword);
+        Director director = new Director("Alice", "Johnson", "alice.johnson@parkshark.com", encodedPassword, division);
         userRepository.save(director);
 
         // when
@@ -97,9 +96,9 @@ public class UserRepositoryTest {
     @Test
     void findByName_shouldReturnNullWhenNameDoesNotMatch() {
         // given
-        Division division = new Division();
+        Division division = new Division("findByName_shouldReturnNullWhenNameDoesNotMatch");
 
-        Director director = new Director(division, "Bob", "Williams", "bob.williams@parkshark.com", encodedPassword);
+        Director director = new Director("Bob", "Williams", "bob.williams@parkshark.com", encodedPassword, division);
         userRepository.save(director);
 
         // when

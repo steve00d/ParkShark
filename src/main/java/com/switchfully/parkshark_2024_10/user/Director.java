@@ -10,22 +10,20 @@ import jakarta.persistence.Transient;
 @DiscriminatorValue("1")
 public class Director extends Person {
 
-    //    @OneToOne(cascade = CascadeType.PERSIST)
-//    @JoinColumn(name="FK_DIVISION_ID")
-    @Transient
+    @OneToOne(mappedBy = "director", cascade = CascadeType.ALL)
     private Division division;
 
-    public Director() {
-        // JACKSON
+    public Director(String firstName, String lastName, String email, String password, Division division) {
+        super(firstName, lastName, email, password);
+        this.division = division;
     }
 
     public Director(Division division) {
         this.division = division;
     }
 
-    public Director(Division division, String firstName, String lastName, String email, String password) {
-        super(firstName, lastName, email, password);
-        this.division = division;
+    public Director() {
+        // JACKSON
     }
 
     @Override

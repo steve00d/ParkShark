@@ -7,11 +7,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.Base64;
+
 @Entity
 @Table(name = "\"user\"")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="person_type",
-discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(name = "person_type",
+        discriminatorType = DiscriminatorType.INTEGER)
 public abstract class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
@@ -74,5 +76,10 @@ public abstract class Person {
 
     public boolean hasPermission(Permission permission) {
         return getRole().hasPermission(permission);
+    }
+
+    @PrePersist
+    protected void encodePassword() {
+        this.password = Base64.getEncoder().encodeToString(this.password.getBytes());
     }
 }

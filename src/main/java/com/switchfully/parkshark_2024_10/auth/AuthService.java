@@ -5,6 +5,8 @@ import com.switchfully.parkshark_2024_10.user.Person;
 import com.switchfully.parkshark_2024_10.user.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
+
 @Service
 public class AuthService {
 
