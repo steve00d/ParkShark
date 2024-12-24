@@ -1,5 +1,7 @@
 package domain.address;
 
+import com.switchfully.parkshark_2024_10.address.Address;
+import com.switchfully.parkshark_2024_10.address.Zip;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,7 +14,7 @@ class AddressTest {
 
     @Test
     void constructor() {
-        zip = new Zip("1000", "Brussels", CountryCode.BE);
+        zip = new Zip("1000", "Brussels", domain.address.CountryCode.BE);
         address = new Address("street", 1, "extra", zip);
 
         assertNull(address.getId());

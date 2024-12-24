@@ -1,8 +1,9 @@
 package domain.contactInformation;
 
-import domain.address.Address;
+import com.switchfully.parkshark_2024_10.address.Address;
+import com.switchfully.parkshark_2024_10.address.Zip;
+import com.switchfully.parkshark_2024_10.contactInformation.ContactInformation;
 import domain.address.CountryCode;
-import domain.address.Zip;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.ValidatorFactory;

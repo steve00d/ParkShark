@@ -1,5 +1,6 @@
 package com.switchfully.parkshark_2024_10.address;
 
+import domain.address.CountryCode;
 import jakarta.persistence.*;
 
 @Entity

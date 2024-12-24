@@ -2,9 +2,10 @@ package com.switchfully.parkshark_2024_10.user;
 
 import com.switchfully.parkshark_2024_10.auth.Role;
 import com.switchfully.parkshark_2024_10.division.Division;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Transient;
+import jakarta.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("1")
