@@ -28,7 +28,7 @@ public class UserRepositoryTest {
         Division division = new Division();
 
 
-        Director director = new Director(division, "Jane", "Doe", "jane.doe@parkshark.com", encodedPassword);
+        Director director = new Director("Jane", "Doe", "jane.doe@parkshark.com", encodedPassword, division);
         userRepository.save(director);
 
         // When
@@ -49,7 +49,7 @@ public class UserRepositoryTest {
 
 
         String wrongEncodedPassword = Base64.getEncoder().encodeToString("wrongPAssword".getBytes());
-        Director director = new Director(division, "John", "Smith", "john.smith@parjshark.com", encodedPassword);
+        Director director = new Director("John", "Smith", "john.smith@parjshark.com", encodedPassword, division);
         userRepository.save(director);
 
         // when
@@ -64,7 +64,7 @@ public class UserRepositoryTest {
         // given
         Division division = new Division();
 
-        Director director = new Director(division, "Alice", "Johnson", "alice.johnson@parkshark.com", encodedPassword);
+        Director director = new Director("Alice", "Johnson", "alice.johnson@parkshark.com", encodedPassword, division);
         userRepository.save(director);
 
         // when
@@ -81,7 +81,7 @@ public class UserRepositoryTest {
         // given
         Division division = new Division();
 
-        Director director = new Director(division, "Alice", "Johnson", "alice.johnson@parkshark.com", encodedPassword);
+        Director director = new Director("Alice", "Johnson", "alice.johnson@parkshark.com", encodedPassword, division);
         userRepository.save(director);
 
         // when
@@ -99,7 +99,7 @@ public class UserRepositoryTest {
         // given
         Division division = new Division();
 
-        Director director = new Director(division, "Bob", "Williams", "bob.williams@parkshark.com", encodedPassword);
+        Director director = new Director("Bob", "Williams", "bob.williams@parkshark.com", encodedPassword, division);
         userRepository.save(director);
 
         // when

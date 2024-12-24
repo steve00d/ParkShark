@@ -8,12 +8,8 @@ import jakarta.persistence.*;
 @DiscriminatorValue("1")
 public class Director extends Person {
 
-    @OneToOne(mappedBy = "director")
+    @OneToOne(mappedBy = "director", cascade = CascadeType.ALL)
     private Division division;
-
-    @OneToOne(mappedBy = "director")
-    private Division division;
-
 
     public Director(String firstName, String lastName, String email, String password, Division division) {
         super(firstName, lastName, email, password);
@@ -25,6 +21,7 @@ public class Director extends Person {
     }
 
     public Director() {
+        // JACKSON
     }
 
     @Override

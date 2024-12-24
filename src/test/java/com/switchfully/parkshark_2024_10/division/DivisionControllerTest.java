@@ -1,7 +1,7 @@
 package com.switchfully.parkshark_2024_10.division;
 
 
-import com.switchfully.parkshark_2024_10.division.dto.CreateDirectorDto;
+import com.switchfully.parkshark_2024_10.director.dto.CreateDirectorDto;
 import com.switchfully.parkshark_2024_10.division.dto.CreateDivisionDto;
 import com.switchfully.parkshark_2024_10.division.dto.DivisionDto;
 import com.switchfully.parkshark_2024_10.user.Manager;

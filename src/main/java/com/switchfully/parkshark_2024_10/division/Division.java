@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Entity
 public class Division {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "division_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "division_seq")
     @SequenceGenerator(name = "division_seq", sequenceName = "division_seq", allocationSize = 1)
     private Long id;
 
@@ -28,7 +28,11 @@ public class Division {
     }
 
     public Division() {
+        // JACKSON
+    }
 
+    public Division(String name) {
+        this(name, null, null);
     }
 
     public String getName() {
@@ -42,8 +46,6 @@ public class Division {
     public String getOriginalCompanyName() {
         return originalCompanyName;
     }
-
-
 
     public Long getId() {
         return id;
