@@ -35,10 +35,6 @@ public class DirectorDto {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public DivisionDto getDivisionDto() {
         return divisionDto;
     }
