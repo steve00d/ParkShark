@@ -6,7 +6,4 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface DivisionRepository extends JpaRepository<Division, Long> {
-
-    @Query("SELECT d FROM Division d")
-    List<Division> getAllDivisions();
 }

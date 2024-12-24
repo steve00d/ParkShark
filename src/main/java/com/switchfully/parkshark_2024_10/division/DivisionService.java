@@ -23,7 +23,7 @@ public class DivisionService {
     }
 
     public List<DivisionDto> getAllDivisions(){
-        List<Division> divisions = divisionRepository.getAllDivisions();
+        List<Division> divisions = divisionRepository.findAll();
         return divisions.stream().map(DivisionMapper::mapToDivisionDto).toList();
     }
 
