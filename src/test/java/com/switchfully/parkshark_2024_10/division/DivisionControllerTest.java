@@ -14,6 +14,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import java.util.Base64;
@@ -33,7 +34,7 @@ class DivisionControllerTest {
         RestAssured.port = port;
     }
 
-    @MockitoSpyBean
+    @MockitoBean
     AuthService authService;
 
     @Test
@@ -44,15 +45,23 @@ class DivisionControllerTest {
                 .encodeToString((manager.getEmail() + ":" + manager.getPassword()).getBytes());
         Mockito.when(authService.userAuthenticated(token)).thenReturn(manager);
 
-        CreateDirectorDto director = new CreateDirectorDto("steve", "daenen",
-                "steve@gmail.com", "1234", null);
-        CreateDivisionDto createDivisionDto = new CreateDivisionDto(
-                "Division 1", director, "old company");
+        String body = """
+                {
+                  "name": "test",
+                  "director": {
+                    "firstName": "Smetje",
+                    "lastName": "Smetvrees",
+                    "email": "test@foo.be",
+                    "password": "test"
+                  },
+                  "originalCompanyName": "test company"
+                }
+                """;
 
         DivisionDto response = RestAssured.given()
                 .header("Authorization", token)
                 .contentType("application/json")
-                .body(createDivisionDto)
+                .body(body)
                 .when()
                 .post("/api/division")
                 .then()
@@ -62,11 +71,11 @@ class DivisionControllerTest {
                 .as(DivisionDto.class);
 
         assertNotNull(response);
-        assertEquals(createDivisionDto.getName(), response.getName());
-        assertEquals(createDivisionDto.getCreateDirectorDto().getEmail(), response.getDirectorDto().getEmail());
-        assertEquals(createDivisionDto.getCreateDirectorDto().getFirstName(), response.getDirectorDto().getFirstName());
-        assertEquals(createDivisionDto.getCreateDirectorDto().getLastName(), response.getDirectorDto().getLastName());
-        assertEquals(createDivisionDto.getOriginalCompanyName(), response.getOriginalCompanyName());
+        assertEquals("test", response.getName());
+        assertEquals("test@foo.be", response.getDirectorDto().getEmail());
+        assertEquals("Smetje", response.getDirectorDto().getFirstName());
+        assertEquals("Smetvrees", response.getDirectorDto().getLastName());
+        assertEquals("test company", response.getOriginalCompanyName());
     }
 
 

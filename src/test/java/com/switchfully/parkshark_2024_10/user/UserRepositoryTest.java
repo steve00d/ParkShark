@@ -27,8 +27,7 @@ public class UserRepositoryTest {
         // given
         Division division = new Division("findByEmailAndPassword_shouldReturnCorrectPerson");
 
-
-        Director director = new Director("Jane", "Doe", "jane.doe@parkshark.com", encodedPassword, division);
+        Director director = new Director("Jane", "Doe", "jane.doe@parkshark.com", "pwd", division);
         userRepository.save(director);
 
         // When

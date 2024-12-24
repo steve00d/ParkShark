@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +21,7 @@ class AuthServiceTest {
     @Autowired
     private AuthService authService;
 
-    @MockitoSpyBean
+    @MockitoBean
     private UserService userService;
 
     @Test

@@ -20,7 +20,7 @@ public class CreateUserTest {
         String encodedPassword = Base64.getEncoder().encodeToString("pwd".getBytes());
 
         Division division = new Division("Test division");
-        Director director = new Director("Bert", "Poelmans", "br@be.com", encodedPassword, division);
+        Director director = new Director("Bert", "Poelmans", "br@be.com", "pwd", division);
 
         // when
         userRepository.save(director);

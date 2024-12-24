@@ -22,6 +22,7 @@ public class UserService {
         return Optional.ofNullable(findByCredentials(username, password))
                 .or(() -> {
                     String encoded = Base64.getEncoder().encodeToString(password.getBytes());
+
                     return Optional.ofNullable(findByCredentials(username, encoded));
                 })
                 .orElseThrow(UnauthorizedException::new);
